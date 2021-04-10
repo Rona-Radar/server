@@ -13,4 +13,14 @@ async def fetch_health_articles():
       return await response.json()
 
 async def get_covid_health_articles(health_articles: Dict[str, any]):
-  pass
+  def covid_articles(jString):
+    articles=[]
+    for article in jString["result"]:
+        filled={"v":False,"c":False}
+        for tag in article["des_facet"]:
+            if "vaccine" in tag.lower() or "vaccination" in tag.lower():
+                filled["v"]=True
+            if "covid" in tag.lower() or "coronavirus" in tag.lower():
+                filled["c"]=True
+            if filled["v"]==True and filled["c"]==True:
+                articles.append(article)
