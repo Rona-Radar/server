@@ -138,3 +138,6 @@ dmypy.json
 cython_debug/
 
 token.txt
+serviceAccountKey.json
+.vscode
+app.yaml
